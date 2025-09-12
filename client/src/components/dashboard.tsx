@@ -1,11 +1,17 @@
-import { Panel } from './panel';
+import { ChartCard } from './chart-card';
+import { DashboardGrid } from './dashboard-grid';
+import { GlobalFilterBar } from './global-filter-bar';
 
 export function Dashboard() {
   return (
-    <div>
-      <p>Dashboard</p>
-      <Panel title={'No. of Employees'} />
-      <Panel title={'Avg. tenure'} />
+    <div className="w-full space-y-4 max-w-screen-xl">
+      <GlobalFilterBar />
+      <DashboardGrid>
+        <ChartCard title="No. of Employees" />
+        <ChartCard title="Avg. Tenure" />
+        <ChartCard title="Headcount by Department" />
+        <ChartCard title="Headcount by Department" />
+      </DashboardGrid>
     </div>
   );
 }
