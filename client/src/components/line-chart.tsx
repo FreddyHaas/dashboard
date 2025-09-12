@@ -1,4 +1,4 @@
-import { CategoryScale, Chart, ChartData } from 'chart.js';
+import { ChartData } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
 function LineChart({ chartData }: { chartData: ChartData<'line'> }) {

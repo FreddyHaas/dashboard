@@ -8,6 +8,8 @@ import { Data } from '../lib/mockData';
 Chart.register(CategoryScale);
 
 export function Panel({ title }: { title: string }) {
+
+  
   const [chartData, setChartData] = useState({
     labels: Data.map((data) => data.year),
     datasets: [
