@@ -14,7 +14,7 @@ export function ChartFilterBar() {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="h-8">Filter</Button>
+          <Button variant="outline" className="h-8 cursor-pointer">Filter</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-72 p-2" align="end">
           <div className="flex flex-col gap-3">

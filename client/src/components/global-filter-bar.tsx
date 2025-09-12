@@ -61,7 +61,7 @@ export function GlobalFilterBar() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="h-9">Filter</Button>
+                <Button variant="outline" className="h-9 cursor-pointer">Filter</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-72 p-2" align="end">
                 <div className="flex flex-col gap-3">

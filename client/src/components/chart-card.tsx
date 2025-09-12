@@ -100,7 +100,7 @@ export function ChartCard({ title, chartType }: { title: string; chartType: Char
   };
 
   return (
-    <Card>
+    <Card className="min-w-[250px]">
       <CardHeader className="py-3">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <CardAction><ChartFilterBar/></CardAction>
