@@ -1,5 +1,5 @@
 type User = { id: string; name: string; };
 
-userList: () => User[];
-userById: (id: string) => User;
-userCreate: (data: { name: string }) => User;
+export const userList = (): User[] => [];
+export const userById = (id: string): User => ({ id, name: 'User' });
+export const userCreate = (data: { name: string }): User => ({ id: '1', name: data.name });

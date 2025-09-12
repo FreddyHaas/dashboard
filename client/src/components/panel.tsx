@@ -4,11 +4,16 @@ import Chart, { CategoryScale } from 'chart.js/auto';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Data } from '../lib/mockData';
+import { trpc } from '../lib/trpc';
 
 Chart.register(CategoryScale);
 
 export function Panel({ title }: { title: string }) {
 
+  const { data: user, isLoading } = trpc.userById.useQuery("test", {
+    enabled: true,
+    refetchOnWindowFocus: false,
+  });
   
   const [chartData, setChartData] = useState({
     labels: Data.map((data) => data.year),
@@ -31,6 +36,7 @@ export function Panel({ title }: { title: string }) {
   return (
     <div>
       <p>{title}</p>
+      <p>Hier steht der User: {user}</p>
       <Line data={chartData} />
     </div>
   );

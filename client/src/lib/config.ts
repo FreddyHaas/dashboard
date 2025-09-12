@@ -1,0 +1,6 @@
+export const config = {
+  /**
+   * API server URL
+   */
+  apiUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
+};
