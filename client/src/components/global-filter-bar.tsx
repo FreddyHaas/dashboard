@@ -19,7 +19,7 @@ import { useGlobalFilter } from "./global-filter-context";
 
 export function GlobalFilterBar() {
   const { filters, updateFilter, clearFilters } = useGlobalFilter();
-  const { dateRange, location, department } = filters;
+  const { dateRange, tenure, location, employmentType, workArrangement } = filters;
 
   const dateLabel = React.useMemo(() => {
     if (dateRange?.from && dateRange.to) {
@@ -58,7 +58,7 @@ export function GlobalFilterBar() {
             </div>
 
             <div className="flex-1" />
-            {(dateRange || location || department) && (
+            {(dateRange || location || tenure || employmentType || workArrangement) && (
               <Button 
                 variant="ghost" 
                 size="icon"
@@ -85,20 +85,6 @@ export function GlobalFilterBar() {
                         <SelectItem value="all">All</SelectItem>
                         <SelectItem value="berlin">Berlin</SelectItem>
                         <SelectItem value="munich">Munich</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex min-w-[200px] flex-col gap-1">
-                    <Label className="text-xs text-muted-foreground">Department</Label>
-                    <Select value={department} onValueChange={(value) => updateFilter('department', value)}>
-                      <SelectTrigger className="h-9">
-                        <SelectValue placeholder="Select department" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All</SelectItem>
-                        <SelectItem value="sales">Sales</SelectItem>
-                        <SelectItem value="engineering">Engineering</SelectItem>
-                        <SelectItem value="hr">HR</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

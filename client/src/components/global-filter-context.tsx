@@ -5,10 +5,10 @@ import { type DateRange } from "react-day-picker";
 
 export interface GlobalFilterState {
   dateRange: DateRange | undefined;
+  tenure: number | undefined;
   location: string | undefined;
-  department: string | undefined;
-  timeframe: string | undefined;
-  segment: string | undefined;
+  employmentType: "Full-time" | "Part-time" | "Contractor" | "Intern" | undefined;
+  workArrangement: "Hybrid" | "Onsite" | "Remote" | undefined;
 }
 
 interface GlobalFilterContextType {
@@ -25,10 +25,10 @@ const GlobalFilterContext = React.createContext<GlobalFilterContextType | undefi
 
 const initialFilterState: GlobalFilterState = {
   dateRange: undefined,
+  tenure: undefined,
   location: undefined,
-  department: undefined,
-  timeframe: undefined,
-  segment: undefined,
+  employmentType: undefined,
+  workArrangement: undefined,
 };
 
 export function GlobalFilterProvider({ children }: { children: React.ReactNode }) {
