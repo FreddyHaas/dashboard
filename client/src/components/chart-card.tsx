@@ -13,10 +13,11 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
+import * as React from 'react';
 import { ChartFilterBar } from './chart-filter-bar';
 import { BarChart, LineChart, PieChart } from './charts';
+import { useGlobalFilter } from './global-filter-context';
 
-// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -36,9 +37,21 @@ export enum ChartType {
 }
 
 // Fake data for different chart types
-const getChartData = (chartType: ChartType) => {
+const getChartData = (chartType: ChartType, filters: any) => {
   const commonLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-  const commonData = [12, 19, 3, 5, 2, 3];
+  let commonData = [12, 19, 3, 5, 2, 3];
+  
+  // Apply filter effects to data (simulated)
+  if (filters.location && filters.location !== 'all') {
+    commonData = commonData.map(val => Math.floor(val * 0.8));
+  }
+  if (filters.department && filters.department !== 'all') {
+    commonData = commonData.map(val => Math.floor(val * 1.2));
+  }
+  if (filters.timeframe) {
+    const multiplier = filters.timeframe === '7d' ? 0.3 : filters.timeframe === '30d' ? 0.7 : 1;
+    commonData = commonData.map(val => Math.floor(val * multiplier));
+  }
 
   switch (chartType) {
     case ChartType.Bar:
@@ -57,7 +70,7 @@ const getChartData = (chartType: ChartType) => {
         datasets: [
           {
             label: 'Trend',
-            data: [12, 19, 3, 5, 2, 3],
+            data: commonData,
           },
         ],
       };
@@ -84,7 +97,8 @@ const getChartData = (chartType: ChartType) => {
 };
 
 export function ChartCard({ title, chartType }: { title: string; chartType: ChartType }) {
-  const chartData = getChartData(chartType);
+  const { filters } = useGlobalFilter();
+  const chartData = React.useMemo(() => getChartData(chartType, filters), [chartType, filters]);
 
   const renderChart = () => {
     switch (chartType) {
