@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useGlobalFilter } from "./global-filter-context";
+import * as React from "react";
 
 export function ChartFilterBar() {
-  const { filters, updateFilter } = useGlobalFilter();
-  const { timeframe, segment } = filters;
+  const [timeframe, setTimeframe] = React.useState<string | undefined>(undefined);
+  const [segment, setSegment] = React.useState<string | undefined>(undefined);
 
   return (
     <div>
@@ -20,7 +20,7 @@ export function ChartFilterBar() {
           <div className="flex flex-col gap-3">
             <div className="flex min-w-[200px] flex-col gap-1">
               <Label className="text-xs text-muted-foreground">Timeframe</Label>
-              <Select value={timeframe} onValueChange={(value) => updateFilter('timeframe', value)}>
+              <Select value={timeframe} onValueChange={setTimeframe}>
                 <SelectTrigger className="h-9">
                   <SelectValue placeholder="Select timeframe" />
                 </SelectTrigger>
@@ -33,7 +33,7 @@ export function ChartFilterBar() {
             </div>
             <div className="flex min-w-[200px] flex-col gap-1">
               <Label className="text-xs text-muted-foreground">Segment</Label>
-              <Select value={segment} onValueChange={(value) => updateFilter('segment', value)}>
+              <Select value={segment} onValueChange={setSegment}>
                 <SelectTrigger className="h-9">
                   <SelectValue placeholder="Select segment" />
                 </SelectTrigger>
