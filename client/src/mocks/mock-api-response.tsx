@@ -14,7 +14,10 @@ interface Employee {
     workArrangement: "hybrid" | "onsite" | "remote";
 }
 
-export function fetchNoOfEmployeesData(filters: Filters): NoOfEmployeesEntry[] {
+export async function fetchNoOfEmployeesData(filters: Filters): Promise<NoOfEmployeesEntry[]> {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 400)); // 800-1200ms delay
+    
     const result: NoOfEmployeesEntry[] = [];
     
     const dates = Object.keys(employeeStatistics).sort();
