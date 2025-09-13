@@ -1,12 +1,12 @@
 "use client";
 
 import { useMemo } from 'react';
-import { type Filter } from "../lib/use-employee-filter-state";
+import { type Filters } from "../lib/use-employee-filters-state";
 import { ClearFiltersButton, FilterDropdown, NumberFilter, OptionFilter, TextFilter } from "./filters";
 
 interface ChartFilterBarProps {
-  filters: Filter;
-  updateFilter: <K extends keyof Filter>(key: K, value: Filter[K]) => void;
+  filters: Filters;
+  updateFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   clearFilters: () => void;
 }
 

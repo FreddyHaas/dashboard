@@ -1,4 +1,4 @@
-export { EmployeeFilter } from "../employee-filter";
+export { EmployeeFilter } from "../employee-filters";
 export { ClearFiltersButton } from "./clear-filters-button";
 export { DateRangeFilter } from "./date-range-filter";
 export { FilterDropdown } from "./filter-dropdown";

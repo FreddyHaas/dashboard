@@ -3,7 +3,7 @@
 import * as React from "react";
 import { type DateRange } from "react-day-picker";
 
-export interface Filter {
+export interface Filters {
   dateRange: DateRange | undefined;
   tenure: number | undefined;
   location: string | undefined;
@@ -11,7 +11,7 @@ export interface Filter {
   workArrangement: "hybrid" | "onsite" | "remote" | undefined;
 }
 
-const initialFilterState: Filter = {
+const initialFilterState: Filters = {
   dateRange: undefined,
   tenure: undefined,
   location: undefined,
@@ -19,11 +19,11 @@ const initialFilterState: Filter = {
   workArrangement: undefined,
 };
 
-export function useFilterState(initialState: Filter = initialFilterState) {
-  const [filters, setFilters] = React.useState<Filter>(initialState);
+export function useFilterState(initialState: Filters = initialFilterState) {
+  const [filters, setFilters] = React.useState<Filters>(initialState);
 
   const updateFilter = React.useCallback(
-    <K extends keyof Filter>(key: K, value: Filter[K]) => {
+    <K extends keyof Filters>(key: K, value: Filters[K]) => {
       setFilters(prev => ({ ...prev, [key]: value }));
     },
     []

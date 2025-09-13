@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { useFilterState, type Filter } from "../lib/use-employee-filter-state";
+import { useFilterState, type Filters } from "../lib/use-employee-filters-state";
 
 interface GlobalFilterContextType {
-  filters: Filter;
-  setFilters: React.Dispatch<React.SetStateAction<Filter>>;
-  updateFilter: <K extends keyof Filter>(
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  updateFilter: <K extends keyof Filters>(
     key: K,
-    value: Filter[K]
+    value: Filters[K]
   ) => void;
   clearFilters: () => void;
 }
