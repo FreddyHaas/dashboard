@@ -14,8 +14,9 @@ import {
   Tooltip,
 } from 'chart.js';
 import * as React from 'react';
-import { ChartFilterBar } from './chart-filter-bar';
+import { useFilterState } from '../lib/use-employee-filter-state';
 import { BarChart, LineChart, PieChart } from './charts';
+import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
 
 ChartJS.register(
@@ -97,8 +98,10 @@ const getChartData = (chartType: ChartType, filters: any) => {
 };
 
 export function ChartCard({ title, chartType }: { title: string; chartType: ChartType }) {
-  const { filters } = useGlobalFilter();
-  const chartData = React.useMemo(() => getChartData(chartType, filters), [chartType, filters]);
+  const { filters: globalFilters } = useGlobalFilter();
+  const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = useFilterState();
+
+  const chartData = React.useMemo(() => getChartData(chartType, { ...globalFilters, ...localFilters }), [chartType, globalFilters, localFilters]);
 
   const renderChart = () => {
     switch (chartType) {
@@ -117,7 +120,9 @@ export function ChartCard({ title, chartType }: { title: string; chartType: Char
     <Card className="min-w-[250px]">
       <CardHeader className="py-3">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <CardAction><ChartFilterBar/></CardAction>
+        <CardAction>
+          <EmployeeFilter filters={localFilters} updateFilter={updateLocalFilter} clearFilters={clearLocalFilters} />
+        </CardAction>
         <CardDescription>
           {chartType} chart visualization
         </CardDescription>
