@@ -1,3 +1,4 @@
+import { AverageTenureChart } from './average-tenure-chart';
 import { DashboardGrid } from './dashboard-grid';
 import { GlobalFilterBar } from './global-filter-bar';
 import { GlobalFilterProvider } from './global-filter-context';
@@ -10,6 +11,7 @@ export function Dashboard() {
         <GlobalFilterBar />
         <DashboardGrid>
           <NoOfEmployeesChart/>
+          <AverageTenureChart/>
         </DashboardGrid>
       </div>
     </GlobalFilterProvider>

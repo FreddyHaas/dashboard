@@ -3,14 +3,14 @@ import React from 'react';
 import { useAsyncData } from '../lib/use-async-data';
 import { useFilterState } from '../lib/use-employee-filters-state';
 import { resolveFilters } from '../lib/utils';
-import { fetchNoOfEmployeesData, NoOfEmployeesEntry } from '../mocks/mock-api-response';
+import { AverageTenureEntry, fetchAverageTenureData } from '../mocks/mock-api-response';
 import { ChartCard } from './chart-card';
-import { BarChart, ChartErrorState } from './charts';
+import { ChartErrorState, LineChart } from './charts';
 import { ChartLoadingSkeleton } from './charts/chart-loading-skeleton';
 import { EmployeeFilter } from './employee-filters';
 import { useGlobalFilter } from './global-filter-context';
 
-function mapToChartData(apiData: NoOfEmployeesEntry[]): ChartData<'bar'> {
+function mapToChartData(apiData: AverageTenureEntry[]): ChartData<'line'> {
     return {
         labels: apiData.map(entry => {
             const date = new Date(entry.date);
@@ -20,20 +20,20 @@ function mapToChartData(apiData: NoOfEmployeesEntry[]): ChartData<'bar'> {
             });
         }),
         datasets: [{
-            label: 'No. of Employees',
-            data: apiData.map(entry => entry.noOfEmployees),
+            label: 'Average Tenure (years)',
+            data: apiData.map(entry => entry.averageTenure),
         }],
     };
 }
 
-export function NoOfEmployeesChart() {
+export function AverageTenureChart() {
     const { filters: globalFilters } = useGlobalFilter();
     const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = useFilterState();
   
     const effectiveFilters = React.useMemo(() => resolveFilters(globalFilters, localFilters), [globalFilters, localFilters]);   
     
     const { data: apiData, isLoading, error } = useAsyncData({
-        fetchFn: () => fetchNoOfEmployeesData(effectiveFilters),
+        fetchFn: () => fetchAverageTenureData(effectiveFilters),
         dependencies: [effectiveFilters],
         initialData: [],
     });
@@ -49,13 +49,13 @@ export function NoOfEmployeesChart() {
             return <ChartLoadingSkeleton />;
         }
         
-        return <BarChart data={chartData} />;
+        return <LineChart data={chartData} />;
     };
 
     return (
         <ChartCard 
-            title={"Number of Employees"}
-            description={"Headcount, not FTE adjusted"}
+            title={"Average Employee Tenure"}
+            description={"In years"}
             action={<EmployeeFilter filters={localFilters} updateFilter={updateLocalFilter} clearFilters={clearLocalFilters} />}
             chart={renderChart()}
         />
