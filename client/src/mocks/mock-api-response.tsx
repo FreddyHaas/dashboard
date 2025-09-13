@@ -1,50 +1,69 @@
-import { ChartType } from '../components/chart-card';
 import { Filters } from '../lib/use-employee-filters-state';
+import employeeStatistics from './employee-statistics.json';
 
-// Fake data for different chart types
-export const getChartData = (chartType: ChartType, filter: Filters) => {
-    const commonLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-    let commonData: any[] = [];
-  
-    switch (chartType) {
-      case ChartType.Bar:
-        return {
-          labels: commonLabels,
-          datasets: [
-            {
-              label: 'Data',
-              data: commonData,
-            },
-          ],
-        };
-      case ChartType.Line:
-        return {
-          labels: commonLabels,
-          datasets: [
-            {
-              label: 'Trend',
-              data: commonData,
-            },
-          ],
-        };
-      case ChartType.Pie:
-        return {
-          labels: ['Desktop', 'Mobile', 'Tablet'],
-          datasets: [
-            {
-              data: [65, 25, 10],
-            },
-          ],
-        };
-      default:
-        return {
-          labels: commonLabels,
-          datasets: [
-            {
-              label: 'Data',
-              data: commonData,
-            },
-          ],
-        };
+export interface NoOfEmployeesEntry {
+    date: string;
+    employees: number;
+}
+
+interface Employee {
+    id: string;
+    tenure: number;
+    location: string;
+    employmentType: "fulltime" | "parttime" | "contractor" | "intern";
+    workArrangement: "hybrid" | "onsite" | "remote";
+}
+
+export function fetchNoOfEmployeesData(filters: Filters): NoOfEmployeesEntry[] {
+    const result: NoOfEmployeesEntry[] = [];
+    
+    const dates = Object.keys(employeeStatistics).sort();
+    
+    for (const date of dates) {
+
+        const currentDate = new Date(date);
+
+        if (filters.dateRange?.from) {
+            const fromDate = new Date(filters.dateRange.from);
+            fromDate.setHours(0, 0, 0, 0); // Normalize to midnight
+            if (currentDate < fromDate) {
+                continue;
+            }
+        }
+
+        if (filters.dateRange?.to) {
+            const toDate = new Date(filters.dateRange.to);
+            toDate.setHours(23, 59, 59, 999); // Normalize to end of day
+            if (currentDate > toDate) {
+                continue;
+            }
+        }
+
+        const employees = employeeStatistics[date as keyof typeof employeeStatistics] as Employee[];
+        
+        let filteredEmployees = employees;
+        
+        if (filters.tenure !== undefined) {
+            filteredEmployees = filteredEmployees.filter(emp => emp.tenure === filters.tenure);
+        }
+        
+        if (filters.location !== undefined) {
+            filteredEmployees = filteredEmployees.filter(emp => emp.location === filters.location);
+        }
+        
+        if (filters.employmentType !== undefined) {
+            filteredEmployees = filteredEmployees.filter(emp => emp.employmentType === filters.employmentType);
+        }
+        
+        if (filters.workArrangement !== undefined) {
+            filteredEmployees = filteredEmployees.filter(emp => emp.workArrangement === filters.workArrangement);
+        }
+        
+        result.push({
+            date: date,
+            employees: filteredEmployees.length
+        });
     }
-  };
+    
+    return result;
+}

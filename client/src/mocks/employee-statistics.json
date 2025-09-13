@@ -1,0 +1,653 @@
+{
+    "2025-09-07T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        }
+    ],
+    "2025-09-08T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        }
+    ],
+    "2025-09-09T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_012",
+            "tenure": 4,
+            "location": "San Francisco",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        }
+    ],
+    "2025-09-10T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_012",
+            "tenure": 4,
+            "location": "San Francisco",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_013",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        }
+    ],
+    "2025-09-11T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_012",
+            "tenure": 4,
+            "location": "San Francisco",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_013",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_014",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        }
+    ],
+    "2025-09-12T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_012",
+            "tenure": 4,
+            "location": "San Francisco",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_013",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_014",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_015",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "remote"
+        }
+    ],
+    "2025-09-13T00:00:00.000Z": [
+        {
+            "id": "emp_001",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_002",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_003",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_004",
+            "tenure": 8,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_005",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_006",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_007",
+            "tenure": 4,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_008",
+            "tenure": 7,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_009",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_010",
+            "tenure": 9,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_011",
+            "tenure": 2,
+            "location": "Cologne",
+            "employmentType": "fulltime",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_012",
+            "tenure": 4,
+            "location": "San Francisco",
+            "employmentType": "parttime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_013",
+            "tenure": 3,
+            "location": "Cologne",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        },
+        {
+            "id": "emp_014",
+            "tenure": 5,
+            "location": "San Francisco",
+            "employmentType": "fulltime",
+            "workArrangement": "hybrid"
+        },
+        {
+            "id": "emp_015",
+            "tenure": 1,
+            "location": "Cologne",
+            "employmentType": "intern",
+            "workArrangement": "remote"
+        },
+        {
+            "id": "emp_016",
+            "tenure": 6,
+            "location": "San Francisco",
+            "employmentType": "contractor",
+            "workArrangement": "onsite"
+        }
+    ]
+}

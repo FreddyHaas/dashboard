@@ -3,6 +3,7 @@
 import { getChartColors } from '@/lib/chart-colors';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import './chart-component-registry'; // Import to register Chart.js components
 
 interface PieChartProps {
   data: ChartData<'pie'>;
