@@ -23,7 +23,7 @@ export function ChartCard({ title, description, action, chart }: ChartCardProps)
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="flex justify-center items-center">
+      <CardContent className="flex justify-center items-center h-40 w-full">
           {chart}
       </CardContent>
     </Card>
