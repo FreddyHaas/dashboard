@@ -10,7 +10,7 @@ export function GlobalFilterBar() {
 
   return (
     <div className="w-full border-b bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/30">
-      <div className="mx-auto max-w-7xl py-3">
+      <div className="mx-auto max-w-7xl pb-3">
         <div className="flex flex-wrap items-center">
           <Separator orientation="vertical" className="h-6" />
           <div className="flex flex-wrap items-end gap-1 flex-1">

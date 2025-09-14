@@ -1,3 +1,4 @@
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { TRPCProvider } from "@/components/trpc-provider";
 import type { Metadata } from "next";
@@ -32,6 +33,7 @@ export default function RootLayout({
         <TRPCProvider>
           <Header />
           {children}
+          <Footer />
         </TRPCProvider>
       </body>
     </html>
