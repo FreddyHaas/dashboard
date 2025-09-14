@@ -13,7 +13,7 @@ export function ChartCard({ title, description, action, chart }: ChartCardProps)
 
   return (
     <Card className="min-w-[250px]">
-      <CardHeader className="py-3">
+      <CardHeader>
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <CardAction>
           {action}
@@ -23,10 +23,8 @@ export function ChartCard({ title, description, action, chart }: ChartCardProps)
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="py-4">
-        <div className="h-40 w-full">
+      <CardContent className="flex justify-center items-center">
           {chart}
-        </div>
       </CardContent>
     </Card>
   );

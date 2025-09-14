@@ -47,7 +47,7 @@ export function EmploymentTypeChart() {
             return <ChartLoadingSkeleton />;
         }
         
-        return <PieChart data={chartData} />;
+        return <div className="max-w-[350px]"><PieChart data={chartData} /></div>;
     };
 
     return (

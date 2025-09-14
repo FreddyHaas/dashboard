@@ -17,7 +17,7 @@ export function PieChart({ data }: PieChartProps) {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'bottom' as const,
+        position: 'right' as const,
         labels: {
           color: colors.mutedForeground,
           usePointStyle: true,
