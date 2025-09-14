@@ -7,34 +7,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String   @db.VarChar(255)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  content   String?
-  published Boolean  @default(false)
-  authorId  Int
-  author    User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  tags      Tag[]
+model FilterState {
+  scope           String           @id // "global", "employee-number", "deployment-type", "average-tenure"
+  dateRangeFrom   DateTime?
+  dateRangeTo     DateTime?
+  tenure          Int?
+  location        String?
+  employmentType  EmploymentType?
+  workArrangement WorkArrangement?
+  updatedAt       DateTime         @updatedAt
+
+  @@map("filter_states")
 }
 
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  userId Int     @unique
-  user   User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+enum EmploymentType {
+  fulltime
+  parttime
+  contractor
+  intern
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  name    String?  @db.VarChar(255)
-  email   String   @unique @db.VarChar(255)
-  posts   Post[]
-  profile Profile?
-}
-
-model Tag {
-  id    Int    @id @default(autoincrement())
-  name  String
-  posts Post[]
+enum WorkArrangement {
+  hybrid
+  onsite
+  remote
 }
