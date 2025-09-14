@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from 'react';
+import { EMPLOYMENT_TYPE_OPTIONS } from "../lib/constants";
 import { type Filters } from "../lib/use-employee-filters-state";
 import { ClearFiltersButton, FilterDropdown, NumberFilter, OptionFilter, TextFilter } from "./filters";
 
@@ -29,12 +30,7 @@ export function EmployeeFilter({ filters, updateFilter, clearFilters }: ChartFil
         label="Employment Type"
         value={employmentType}
         onValueChange={(value) => updateFilter('employmentType', value)}
-        options={[
-          { value: "fulltime", label: "Full-time" },
-          { value: "parttime", label: "Part-time" },
-          { value: "contractor", label: "Contractor" },
-          { value: "intern", label: "Intern" }
-        ]}
+        options={EMPLOYMENT_TYPE_OPTIONS}
       />
       <OptionFilter<typeof filters.workArrangement>
         label="Work Arrangement"
