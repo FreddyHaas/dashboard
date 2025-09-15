@@ -26,7 +26,7 @@ export function TextFilter({
       <Input
         type={type}
         value={value || ""}
-        onChange={(e) => onValueChange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onValueChange(e.target.value)}
         placeholder={placeholder}
         className="h-9"
       />

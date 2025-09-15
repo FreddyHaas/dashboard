@@ -12,10 +12,8 @@ interface FilterProps {
 
 export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterProps) {
   const { tenure, location, employmentType, workArrangement } = filters;
-  const hasFilters = useMemo(() => 
-    Object.values(filters).some(value => value !== undefined), 
-    [filters]
-  );
+  const activeFilterCount = useMemo(() => Object.values(filters).filter(value => value !== undefined).length, [filters]);
+  const hasFilters = activeFilterCount > 0;
 
   return (
     <div className="flex flex-wrap items-end gap-1">
@@ -23,7 +21,7 @@ export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterPr
         onClear={clearFilters}
         hasFilters={hasFilters}
       />
-      <FilterDropdown>
+      <FilterDropdown filterCount={activeFilterCount}>
       <div className="flex flex-col gap-4">
       <OptionFilter<typeof filters.employmentType>
         label="Employment Type"

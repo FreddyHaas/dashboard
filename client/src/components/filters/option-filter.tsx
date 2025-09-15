@@ -30,14 +30,14 @@ export function OptionFilter<T>({
       <Label className="text-xs text-muted-foreground">{label}</Label>
       <Select 
         value={value ? String(value) : undefined} 
-        onValueChange={(stringValue) => {
+        onValueChange={(stringValue: string) => {
           const option = options.find(opt => String(opt.value) === stringValue);
           if (option) {
             onValueChange(option.value);
           }
         }}
       >
-        <SelectTrigger className="h-9">
+        <SelectTrigger className="h-9 w-full">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
