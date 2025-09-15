@@ -1,7 +1,7 @@
 import { ChartData } from 'chart.js';
 import React from 'react';
 
-import { useAsyncData } from '../hooks/use-async-data';
+import { useDebouncedQuery } from '../hooks/use-debounced-query';
 import { EMPLOYMENT_TYPE_LABELS, usePersistedFilterState } from '../hooks/use-employee-filters-state';
 import { resolveFilters } from '../lib/utils';
 import { EmployeeTypeEntry, fetchEmployeeEmploymentTypeData } from '../mocks/mock-api-response';
@@ -30,17 +30,17 @@ export function EmploymentTypeChart() {
   
     const effectiveFilters = React.useMemo(() => resolveFilters(globalFilters, localFilters), [globalFilters, localFilters]);   
     
-    const { data: apiData, isLoading, error } = useAsyncData({
-        fetchFn: () => fetchEmployeeEmploymentTypeData(effectiveFilters),
-        dependencies: [effectiveFilters],
-        initialData: [],
+    const { data: apiData = [], isLoading, error } = useDebouncedQuery({
+        queryKey: ['employee-employment-type', effectiveFilters],
+        queryFn: () => fetchEmployeeEmploymentTypeData(effectiveFilters),
+        debounceMs: 500,
     });
 
     const chartData = React.useMemo(() => mapToChartData(apiData || []), [apiData]);
 
     const renderChart = () => {
         if (error) {
-            return <ChartErrorState error={error} />;
+            return <ChartErrorState error={error.message || 'An error occurred'} />;
         }
         
         if (isLoading) {

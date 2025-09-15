@@ -2,6 +2,7 @@
 
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { useCallback } from 'react';
 
 interface NumberFilterProps {
   label: string;
@@ -24,10 +25,11 @@ export function NumberFilter({
   step = 1,
   defaultValue = 0,
 }: NumberFilterProps) {
-  const handleValueChange = (values: number[]) => {
-    const newValue = values[0];
-    onValueChange(newValue);
-  };
+  const handleValueChange = useCallback((values: number[]) => {
+    if (values.length > 0) {
+      onValueChange(values[0]);
+    }
+  }, [onValueChange]);
 
   return (
     <div className={`flex ${className} flex-col gap-2`}>
