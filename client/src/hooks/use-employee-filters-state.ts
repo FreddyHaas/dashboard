@@ -2,8 +2,9 @@
 
 import type { AppRouter } from '@server/routes/router';
 import { type inferRouterOutputs } from '@trpc/server';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { type DateRange } from "react-day-picker";
+import { useDebounce } from 'use-debounce';
 import { trpc } from '../components/trpc-provider';
 
 type RouterOutputs = inferRouterOutputs<AppRouter>;
@@ -111,42 +112,29 @@ export function usePersistedFilterState(scope: string) {
     },
   });
 
-  // Debounced save function with proper cleanup
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
-  const debouncedSave = useCallback((filtersToSave: Filters) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    
-    timeoutRef.current = setTimeout(() => {
+  // Debounce the filters state
+  const [debouncedFilters] = useDebounce(filters, 500);
+
+  // Save filters when debounced value changes
+  useEffect(() => {
+    if (debouncedFilters) {
       setIsLoading(true);
       setError(null);
-      const serverData = mapToServerFilterDto(filtersToSave, scope);
+      const serverData = mapToServerFilterDto(debouncedFilters, scope);
       saveFilterMutation.mutate(serverData, {
         onSettled: () => {
           setIsLoading(false);
         },
       });
-    }, 500); // 500ms debounce
-  }, [saveFilterMutation, scope]);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
+    }
+  }, [debouncedFilters, scope]);
 
   const updateFilter = useCallback(
     <K extends keyof Filters>(key: K, value: Filters[K]) => {
       const newFilters = { ...filters, [key]: value };
       setFilters(newFilters);
-      debouncedSave(newFilters);
     },
-    [filters, debouncedSave]
+    [filters]
   );
 
   const clearFilters = useCallback(() => {
@@ -158,8 +146,7 @@ export function usePersistedFilterState(scope: string) {
       workArrangement: undefined,
     };
     setFilters(clearedFilters);
-    debouncedSave(clearedFilters);
-  }, [debouncedSave]);
+  }, []);
 
   return {
     filters,
