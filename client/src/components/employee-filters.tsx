@@ -12,7 +12,10 @@ interface FilterProps {
 
 export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterProps) {
   const { tenure, location, employmentType, workArrangement } = filters;
-  const activeFilterCount = useMemo(() => Object.values(filters).filter(value => value !== undefined).length, [filters]);
+  const activeFilterCount = useMemo(() => {
+    const { dateRange, ...otherFilters } = filters;
+    return Object.values(otherFilters).filter(value => value !== undefined).length;
+  }, [filters]);
   const hasFilters = activeFilterCount > 0;
 
   return (
