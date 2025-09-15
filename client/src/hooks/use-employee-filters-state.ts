@@ -27,6 +27,7 @@ const initialFilterState: Filters = {
 };
 
 type EmploymentType = NonNullable<Filters['employmentType']>;
+type WorkArrangement = NonNullable<Filters['workArrangement']>;
 
 export const EMPLOYMENT_TYPE_LABELS: Record<EmploymentType, string> = {
   fulltime: "Full-time",
@@ -35,10 +36,27 @@ export const EMPLOYMENT_TYPE_LABELS: Record<EmploymentType, string> = {
   intern: "Intern"
 };
 
-export const EMPLOYMENT_TYPE_OPTIONS = Object.entries(EMPLOYMENT_TYPE_LABELS).map(([key, value]) => ({
-  value: key as EmploymentType,
-  label: value
-}));
+export const EMPLOYMENT_TYPE_OPTIONS = [
+  { value: undefined, label: "All" },
+  ...Object.entries(EMPLOYMENT_TYPE_LABELS).map(([key, value]) => ({
+    value: key as EmploymentType,
+    label: value
+  }))
+];
+
+export const WORK_ARRANGEMENT_LABELS: Record<WorkArrangement, string> = {
+  hybrid: "Hybrid",
+  onsite: "Onsite",
+  remote: "Remote"
+};
+
+export const WORK_ARRANGEMENT_OPTIONS = [
+  { value: undefined, label: "All" },
+  ...Object.entries(WORK_ARRANGEMENT_LABELS).map(([key, value]) => ({
+    value: key as WorkArrangement,
+    label: value
+  }))
+];
 
 function mapDateRange(filterDto: filterDto): DateRange | undefined {
   if (!filterDto?.dateRangeFrom) {

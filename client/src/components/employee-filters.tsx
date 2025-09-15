@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from 'react';
-import { EMPLOYMENT_TYPE_OPTIONS, type Filters } from "../hooks/use-employee-filters-state";
+import { EMPLOYMENT_TYPE_OPTIONS, WORK_ARRANGEMENT_OPTIONS, type Filters } from "../hooks/use-employee-filters-state";
 import { ClearFiltersButton, FilterDropdown, NumberFilter, OptionFilter, TextFilter } from "./filters";
 
 interface FilterProps {
@@ -36,11 +36,7 @@ export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterPr
         label="Work Arrangement"
         value={workArrangement}
         onValueChange={(value) => updateFilter('workArrangement', value)}
-        options={[
-          { value: "hybrid", label: "Hybrid" },
-          { value: "onsite", label: "Onsite" },
-          { value: "remote", label: "Remote" }
-        ]}
+        options={WORK_ARRANGEMENT_OPTIONS}
       />
       <TextFilter
         label="Location"
