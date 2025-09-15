@@ -1,6 +1,6 @@
 "use client";
 
-import { getChartColors } from '@/lib/chart-colors';
+import { getChartColors } from '@/lib/colors';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import './chart-component-registry'; // Import to register Chart.js components
@@ -54,7 +54,6 @@ export function LineChart({ data }: LineChartProps) {
       borderColor: colors.primary,
       backgroundColor: `${colors.primary}1a`, // Add transparency for fill
       tension: 0.4,
-      fill: true,
     })),
   };
 

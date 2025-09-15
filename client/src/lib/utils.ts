@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { type Filters } from "./use-employee-filters-state";
+import { type Filters } from "../hooks/use-employee-filters-state";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

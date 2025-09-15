@@ -1,8 +1,8 @@
 import { ChartData } from 'chart.js';
 import React from 'react';
-import { EMPLOYMENT_TYPE_LABELS } from '../lib/constants';
-import { useAsyncData } from '../lib/use-async-data';
-import { useFilterState } from '../lib/use-employee-filters-state';
+
+import { useAsyncData } from '../hooks/use-async-data';
+import { EMPLOYMENT_TYPE_LABELS, usePersistedFilterState } from '../hooks/use-employee-filters-state';
 import { resolveFilters } from '../lib/utils';
 import { EmployeeTypeEntry, fetchEmployeeEmploymentTypeData } from '../mocks/mock-api-response';
 import { ChartCard } from './chart-card';
@@ -26,7 +26,7 @@ function mapToChartData(apiData: EmployeeTypeEntry[]): ChartData<'pie'> {
 
 export function EmploymentTypeChart() {
     const { filters: globalFilters } = useGlobalFilter();
-    const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = useFilterState();
+    const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = usePersistedFilterState("employment-type");
   
     const effectiveFilters = React.useMemo(() => resolveFilters(globalFilters, localFilters), [globalFilters, localFilters]);   
     

@@ -1,5 +1,5 @@
 import { DateRange } from 'react-day-picker';
-import { Filters } from '../lib/use-employee-filters-state';
+import { Filters } from '../hooks/use-employee-filters-state';
 import employeeStatistics from './employee-statistics.json';
 
 export interface NoOfEmployeesEntry {
@@ -66,11 +66,6 @@ export async function extractEmployeeData<T>(
     const dates = Object.keys(employeeStatistics).sort();
     
     const filteredDates = filterDates(dates, filters.dateRange, fetchLatestDateOnly);
-    
-    // TODO: Remove this
-    if (fetchLatestDateOnly) {
-        console.log("fetchLatestDateOnly", filteredDates);
-    }
         
     for (const date of filteredDates) {
 
@@ -88,7 +83,7 @@ function filterEmployees(employees: Employee[], filters: Filters): Employee[] {
     let filteredEmployees = employees;
     
     if (filters.tenure !== undefined) {
-        filteredEmployees = filteredEmployees.filter(emp => emp.tenure === filters.tenure);
+        filteredEmployees = filteredEmployees.filter(emp => emp.tenure > filters.tenure!);
     }
     
     if (filters.location !== undefined) {

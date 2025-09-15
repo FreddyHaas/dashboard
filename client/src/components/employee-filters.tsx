@@ -1,17 +1,16 @@
 "use client";
 
 import { useMemo } from 'react';
-import { EMPLOYMENT_TYPE_OPTIONS } from "../lib/constants";
-import { type Filters } from "../lib/use-employee-filters-state";
+import { EMPLOYMENT_TYPE_OPTIONS, type Filters } from "../hooks/use-employee-filters-state";
 import { ClearFiltersButton, FilterDropdown, NumberFilter, OptionFilter, TextFilter } from "./filters";
 
-interface ChartFilterBarProps {
+interface FilterProps {
   filters: Filters;
   updateFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   clearFilters: () => void;
 }
 
-export function EmployeeFilter({ filters, updateFilter, clearFilters }: ChartFilterBarProps) {
+export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterProps) {
   const { tenure, location, employmentType, workArrangement } = filters;
   const hasFilters = useMemo(() => 
     Object.values(filters).some(value => value !== undefined), 

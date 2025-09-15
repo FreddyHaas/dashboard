@@ -3,12 +3,12 @@
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export interface Option<T = string> {
+export interface Option<T> {
   value: T;
   label: string;
 }
 
-interface OptionFilterProps<T = string> {
+interface OptionFilterProps<T> {
   label: string;
   value?: T;
   onValueChange: (value: T) => void;
@@ -17,7 +17,7 @@ interface OptionFilterProps<T = string> {
   className?: string;
 }
 
-export function OptionFilter<T = string>({ 
+export function OptionFilter<T>({ 
   label,
   value,
   onValueChange, 

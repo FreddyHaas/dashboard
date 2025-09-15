@@ -1,7 +1,7 @@
 import { ChartData } from 'chart.js';
 import React from 'react';
-import { useAsyncData } from '../lib/use-async-data';
-import { useFilterState } from '../lib/use-employee-filters-state';
+import { useAsyncData } from '../hooks/use-async-data';
+import { usePersistedFilterState } from '../hooks/use-employee-filters-state';
 import { resolveFilters } from '../lib/utils';
 import { fetchNoOfEmployeesData, NoOfEmployeesEntry } from '../mocks/mock-api-response';
 import { ChartCard } from './chart-card';
@@ -28,7 +28,7 @@ function mapToChartData(apiData: NoOfEmployeesEntry[]): ChartData<'bar'> {
 
 export function NoOfEmployeesChart() {
     const { filters: globalFilters } = useGlobalFilter();
-    const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = useFilterState();
+    const { filters: localFilters, updateFilter: updateLocalFilter, clearFilters: clearLocalFilters } = usePersistedFilterState("no-of-employees");
   
     const effectiveFilters = React.useMemo(() => resolveFilters(globalFilters, localFilters), [globalFilters, localFilters]);   
     

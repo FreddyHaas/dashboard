@@ -1,4 +1,4 @@
-import { type Filters } from '../use-employee-filters-state';
+import { type Filters } from '../../hooks/use-employee-filters-state';
 import { resolveFilters } from '../utils';
 
 describe('mergeFilters', () => {

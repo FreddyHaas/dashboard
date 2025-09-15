@@ -16,7 +16,7 @@ export function GlobalFilterBar() {
           <div className="flex flex-wrap items-end gap-1 flex-1">
             <DateRangeFilter
               dateRange={dateRange}
-              onDateRangeChange={(range) => updateFilter('dateRange', range as any)}
+              onDateRangeChange={(range) => updateFilter('dateRange', range)}
             />
             <div className="flex-1" />
             <EmployeeFilter filters={filters} updateFilter={updateFilter} clearFilters={clearFilters} />

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useFilterState, type Filters } from "../lib/use-employee-filters-state";
+import { usePersistedFilterState, type Filters } from "../hooks/use-employee-filters-state";
 
 interface GlobalFilterContextType {
   filters: Filters;
@@ -11,25 +11,17 @@ interface GlobalFilterContextType {
     value: Filters[K]
   ) => void;
   clearFilters: () => void;
+  isLoading: boolean;
+  error: string | null;
 }
 
 const GlobalFilterContext = React.createContext<GlobalFilterContextType | undefined>(undefined);
 
 export function GlobalFilterProvider({ children }: { children: React.ReactNode }) {
-  const { filters, setFilters, updateFilter, clearFilters } = useFilterState();
-
-  const value = React.useMemo(
-    () => ({
-      filters,
-      setFilters,
-      updateFilter,
-      clearFilters,
-    }),
-    [filters, setFilters, updateFilter, clearFilters]
-  );
+  const filterState = usePersistedFilterState("global");
 
   return (
-    <GlobalFilterContext.Provider value={value}>
+    <GlobalFilterContext.Provider value={filterState}>
       {children}
     </GlobalFilterContext.Provider>
   );
