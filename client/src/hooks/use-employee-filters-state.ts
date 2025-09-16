@@ -1,14 +1,9 @@
 'use client';
 
-import type { AppRouter } from '@server/routes/router';
-import { type inferRouterOutputs } from '@trpc/server';
 import { useCallback, useEffect, useState } from 'react';
 import { type DateRange } from 'react-day-picker';
 import { useDebounce } from 'use-debounce';
-import { trpc } from '../components/trpc-provider';
-
-type RouterOutputs = inferRouterOutputs<AppRouter>;
-type filterDto = RouterOutputs['getFilterOrDefault'];
+import { filterDto, trpc } from '../components/trpc-provider';
 
 export interface Filters {
   dateRange: DateRange | undefined;

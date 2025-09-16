@@ -11,11 +11,11 @@ import {
   EmployeeTypeEntry,
   fetchEmployeeEmploymentTypeData,
 } from '../mocks/mock-api-response';
-import { ChartCard } from './chart-card';
-import { ChartErrorState, PieChart } from './charts';
-import { ChartLoadingSkeleton } from './charts/chart-loading-skeleton';
-import { EmployeeFilter } from './employee-filters';
+import { ChartCard, ChartErrorState, ChartLoadingSkeleton, PieChart } from './charts';
+import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
+
+const EMPLOYMENT_TYPE_FILTER_SCOPE = 'employment-type';
 
 function mapToChartData(apiData: EmployeeTypeEntry[]): ChartData<'pie'> {
   return {
@@ -39,7 +39,7 @@ export function EmploymentTypeChart() {
     filters: localFilters,
     updateFilter: updateLocalFilter,
     clearFilters: clearLocalFilters,
-  } = usePersistedFilterState('employment-type');
+  } = usePersistedFilterState(EMPLOYMENT_TYPE_FILTER_SCOPE);
 
   const effectiveFilters = React.useMemo(
     () => resolveFilters(globalFilters, localFilters),
@@ -51,7 +51,7 @@ export function EmploymentTypeChart() {
     isLoading,
     error,
   } = useDebouncedQuery({
-    queryKey: ['employee-employment-type', effectiveFilters],
+    queryKey: [EMPLOYMENT_TYPE_FILTER_SCOPE, effectiveFilters],
     queryFn: () => fetchEmployeeEmploymentTypeData(effectiveFilters),
     debounceMs: 500,
   });

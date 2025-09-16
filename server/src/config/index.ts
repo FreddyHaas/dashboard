@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 
-const envFound = dotenv.config();
-if (envFound.error) {
-  console.error("⚠️  Couldn't find .env file  ⚠️");
-}
+dotenv.config();
+
+const portFromEnv = Number(process.env.PORT);
+const port = Number.isFinite(portFromEnv) && portFromEnv > 0 ? portFromEnv : 8000;
 
 export default {
   /**
    * Your favorite port
    */
-  port: parseInt(process.env.PORT || '8000', 10),
+  port,
 };

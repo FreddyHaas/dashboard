@@ -7,11 +7,11 @@ import {
   fetchNoOfEmployeesData,
   NoOfEmployeesEntry,
 } from '../mocks/mock-api-response';
-import { ChartCard } from './chart-card';
-import { BarChart, ChartErrorState } from './charts';
-import { ChartLoadingSkeleton } from './charts/chart-loading-skeleton';
-import { EmployeeFilter } from './employee-filters';
+import { BarChart, ChartCard, ChartErrorState, ChartLoadingSkeleton } from './charts';
+import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
+
+const NO_OF_EMPLOYEES_FILTER_SCOPE = 'no-of-employees';
 
 function mapToChartData(apiData: NoOfEmployeesEntry[]): ChartData<'bar'> {
   return {
@@ -37,7 +37,7 @@ export function NoOfEmployeesChart() {
     filters: localFilters,
     updateFilter: updateLocalFilter,
     clearFilters: clearLocalFilters,
-  } = usePersistedFilterState('no-of-employees');
+  } = usePersistedFilterState(NO_OF_EMPLOYEES_FILTER_SCOPE);
 
   const effectiveFilters = React.useMemo(
     () => resolveFilters(globalFilters, localFilters),
@@ -49,7 +49,7 @@ export function NoOfEmployeesChart() {
     isLoading,
     error,
   } = useDebouncedQuery({
-    queryKey: ['no-of-employees', effectiveFilters],
+    queryKey: [NO_OF_EMPLOYEES_FILTER_SCOPE, effectiveFilters],
     queryFn: () => fetchNoOfEmployeesData(effectiveFilters),
     debounceMs: 500,
   });

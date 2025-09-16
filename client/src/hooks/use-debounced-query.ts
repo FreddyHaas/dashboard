@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
 import { useDebounce } from 'use-debounce';
 
 interface UseDebouncedQueryOptions<TData> {
@@ -20,11 +19,8 @@ export function useDebouncedQuery<TData>({
   // Debounce the query key to prevent rapid refetches
   const [debouncedQueryKey] = useDebounce(queryKey, debounceMs);
 
-  // Create a stable query key object for React Query
-  const stableQueryKey = useMemo(() => debouncedQueryKey, [debouncedQueryKey]);
-
   return useQuery({
-    queryKey: stableQueryKey,
+    queryKey: debouncedQueryKey,
     queryFn,
   });
 }

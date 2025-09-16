@@ -11,7 +11,7 @@ import { useState } from 'react';
 export const trpc = createTRPCReact<AppRouter>();
 
 type RouterOutputs = inferRouterOutputs<AppRouter>;
-export type ServerFilter = RouterOutputs['getFilterOrDefault'];
+export type filterDto = RouterOutputs['getFilterOrDefault'];
 
 export function TRPCProvider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());

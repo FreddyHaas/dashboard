@@ -7,11 +7,11 @@ import {
   AverageTenureEntry,
   fetchAverageTenureData,
 } from '../mocks/mock-api-response';
-import { ChartCard } from './chart-card';
-import { ChartErrorState, LineChart } from './charts';
-import { ChartLoadingSkeleton } from './charts/chart-loading-skeleton';
-import { EmployeeFilter } from './employee-filters';
+import { ChartCard, ChartErrorState, ChartLoadingSkeleton, LineChart } from './charts';
+import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
+
+const AVERAGE_TENURE_FILTER_SCOPE = 'average-tenure';
 
 function mapToChartData(apiData: AverageTenureEntry[]): ChartData<'line'> {
   return {
@@ -37,7 +37,7 @@ export function AverageTenureChart() {
     filters: localFilters,
     updateFilter: updateLocalFilter,
     clearFilters: clearLocalFilters,
-  } = usePersistedFilterState('average-tenure');
+  } = usePersistedFilterState(AVERAGE_TENURE_FILTER_SCOPE);
 
   const effectiveFilters = React.useMemo(
     () => resolveFilters(globalFilters, localFilters),
@@ -49,7 +49,7 @@ export function AverageTenureChart() {
     isLoading,
     error,
   } = useDebouncedQuery({
-    queryKey: ['average-tenure', effectiveFilters],
+    queryKey: [AVERAGE_TENURE_FILTER_SCOPE, effectiveFilters],
     queryFn: () => fetchAverageTenureData(effectiveFilters),
     debounceMs: 500,
   });

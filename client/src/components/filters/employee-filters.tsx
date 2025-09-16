@@ -1,18 +1,17 @@
 'use client';
 
 import { useMemo } from 'react';
+
 import {
   EMPLOYMENT_TYPE_OPTIONS,
   WORK_ARRANGEMENT_OPTIONS,
   type Filters,
-} from '../hooks/use-employee-filters-state';
-import {
-  ClearFiltersButton,
-  FilterDropdown,
-  NumberFilter,
-  OptionFilter,
-  TextFilter,
-} from './filters';
+} from '../../hooks/use-employee-filters-state';
+import { ClearFiltersButton } from './clear-filters-button';
+import { FilterDropdown } from './filter-dropdown';
+import { NumberFilter } from './number-filter';
+import { OptionFilter } from './option-filter';
+import { TextFilter } from './text-filter';
 
 interface FilterProps {
   filters: Filters;
