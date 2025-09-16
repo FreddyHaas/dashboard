@@ -13,14 +13,6 @@ export interface Filters {
   workArrangement: 'hybrid' | 'onsite' | 'remote' | undefined;
 }
 
-const initialFilterState: Filters = {
-  dateRange: undefined,
-  tenure: undefined,
-  location: undefined,
-  employmentType: undefined,
-  workArrangement: undefined,
-};
-
 type EmploymentType = NonNullable<Filters['employmentType']>;
 type WorkArrangement = NonNullable<Filters['workArrangement']>;
 
@@ -85,26 +77,24 @@ function mapToServerFilterDto(filters: Filters, scope: string) {
 }
 
 export function usePersistedFilterState(scope: string) {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  const {
-    data: filterDto,
-    isLoading: isInitialLoading,
-    error: queryError,
-  } = trpc.getFilterOrDefault.useQuery({ scope });
+  const { data: filterDto, error: queryError } =
+    trpc.getFilterOrDefault.useQuery({ scope });
 
-  const [filters, setFilters] = useState<Filters>(() => {
+  const [filters, setFilters] = useState<Filters | null>(() => {
     if (filterDto) {
       return mapToClientFilterModel(filterDto);
     }
-    return initialFilterState;
+    return null;
   });
 
-  // Handle successful data loading
+  // Handle successful data loading - only on initial load
   useEffect(() => {
     if (filterDto) {
       const filter = mapToClientFilterModel(filterDto);
+      console.log('set initial filter load', scope);
       setFilters(filter);
     }
   }, [filterDto]);
@@ -123,34 +113,35 @@ export function usePersistedFilterState(scope: string) {
       console.error('Failed to save filters:', err);
       setError(`Failed to save filters: ${err.message}`);
     },
+    onSuccess: () => {
+      console.log('save filter success', scope);
+    },
   });
 
-  // Debounce the filters state
   const [debouncedFilters] = useDebounce(filters, 500);
-
-  // Save filters when debounced value changes
+  // Save filters when debounced value changes (but not during initial load)
   useEffect(() => {
-    if (debouncedFilters) {
-      setIsLoading(true);
-      setError(null);
-      const serverData = mapToServerFilterDto(debouncedFilters, scope);
-      saveFilterMutation.mutate(serverData, {
-        onSettled: () => {
-          setIsLoading(false);
-        },
-      });
+    if (debouncedFilters === null || isInitialLoad) {
+      return;
     }
+
+    setError(null);
+    const serverData = mapToServerFilterDto(debouncedFilters, scope);
+    saveFilterMutation.mutate(serverData);
   }, [debouncedFilters, scope]);
 
   const updateFilter = useCallback(
     <K extends keyof Filters>(key: K, value: Filters[K]) => {
-      const newFilters = { ...filters, [key]: value };
-      setFilters(newFilters);
+      setIsInitialLoad(false);
+      console.log('update filter', scope);
+      setFilters((prev) => (prev === null ? prev : { ...prev, [key]: value }));
     },
-    [filters],
+    [],
   );
 
   const clearFilters = useCallback(() => {
+    console.log('clear filters', scope);
+    setIsInitialLoad(false);
     const clearedFilters = {
       dateRange: undefined,
       tenure: undefined,
@@ -166,7 +157,6 @@ export function usePersistedFilterState(scope: string) {
     setFilters,
     updateFilter,
     clearFilters,
-    isLoading: isLoading || isInitialLoading,
     error,
   };
 }

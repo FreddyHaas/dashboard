@@ -7,11 +7,10 @@ import {
 } from '../hooks/use-employee-filters-state';
 
 interface GlobalFilterContextType {
-  filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: Filters | null;
+  setFilters: React.Dispatch<React.SetStateAction<Filters | null>>;
   updateFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   clearFilters: () => void;
-  isLoading: boolean;
   error: string | null;
 }
 

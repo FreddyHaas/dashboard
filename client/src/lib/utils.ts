@@ -15,17 +15,21 @@ export function cn(...inputs: ClassValue[]) {
  * @returns A new Filters object with merged values
  */
 export function resolveFilters(
-  globalFilters: Filters,
-  localFilters: Filters,
-): Filters {
+  globalFilters: Filters | null,
+  localFilters: Filters | null,
+): Filters | null {
+  if (globalFilters === null || localFilters === null) {
+    return null;
+  }
+
   const result: Filters = { ...globalFilters };
 
   // Only override global values if local values are not undefined
-  (Object.keys(localFilters) as Array<keyof Filters>).forEach((key) => {
-    if (localFilters[key] !== undefined) {
-      (result as any)[key] = localFilters[key];
-    }
-  });
+  const filteredLocal = Object.fromEntries(
+    Object.entries(localFilters).filter(([, v]) => v !== undefined),
+  ) as Partial<Filters>;
 
-  return result;
+  const merged: Filters = { ...result, ...filteredLocal };
+
+  return merged;
 }

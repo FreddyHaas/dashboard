@@ -28,6 +28,7 @@ interface Employee {
 export async function fetchNoOfEmployeesData(
   filters: Filters,
 ): Promise<NoOfEmployeesEntry[]> {
+  console.log('fetchNoOfEmployeesData', filters);
   return extractEmployeeData(filters, (date, filteredEmployees) => [
     {
       date: date,
@@ -39,6 +40,7 @@ export async function fetchNoOfEmployeesData(
 export async function fetchAverageTenureData(
   filters: Filters,
 ): Promise<AverageTenureEntry[]> {
+  console.log('fetchAverageTenureData', filters);
   return extractEmployeeData(filters, (date, filteredEmployees) => [
     {
       date: date,
@@ -52,6 +54,7 @@ export async function fetchAverageTenureData(
 export async function fetchEmployeeEmploymentTypeData(
   filters: Filters,
 ): Promise<EmployeeTypeEntry[]> {
+  console.log('fetchEmployeeEmploymentTypeData', filters);
   return extractEmployeeData<EmployeeTypeEntry>(
     filters,
     (_, filteredEmployees) => {

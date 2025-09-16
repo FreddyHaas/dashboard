@@ -1,7 +1,7 @@
-import { publicProcedure, router } from '@/routes/trpc';
 import { getFilterOrDefault, saveFilter } from '@/services/filterService';
 import { EmploymentType, WorkArrangement } from '@prisma/client';
 import { z } from 'zod';
+import { publicProcedure, router } from './trpc';
 
 export const appRouter = router({
   getFilterOrDefault: publicProcedure

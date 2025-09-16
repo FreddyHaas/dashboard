@@ -1,13 +1,19 @@
+import { useQuery } from '@tanstack/react-query';
 import { ChartData } from 'chart.js';
 import React from 'react';
-import { useDebouncedQuery } from '../hooks/use-debounced-query';
+import { useDebounce } from 'use-debounce';
 import { usePersistedFilterState } from '../hooks/use-employee-filters-state';
 import { resolveFilters } from '../lib/utils';
 import {
   AverageTenureEntry,
   fetchAverageTenureData,
 } from '../mocks/mock-api-response';
-import { ChartCard, ChartErrorState, ChartLoadingSkeleton, LineChart } from './charts';
+import {
+  ChartCard,
+  ChartErrorState,
+  ChartLoadingSkeleton,
+  LineChart,
+} from './charts';
 import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
 
@@ -44,14 +50,16 @@ export function AverageTenureChart() {
     [globalFilters, localFilters],
   );
 
+  const [debouncedEffectiveFilters] = useDebounce(effectiveFilters, 500);
+
   const {
     data: apiData = [],
     isLoading,
     error,
-  } = useDebouncedQuery({
-    queryKey: [AVERAGE_TENURE_FILTER_SCOPE, effectiveFilters],
-    queryFn: () => fetchAverageTenureData(effectiveFilters),
-    debounceMs: 500,
+  } = useQuery({
+    queryKey: [AVERAGE_TENURE_FILTER_SCOPE, debouncedEffectiveFilters],
+    queryFn: () => fetchAverageTenureData(debouncedEffectiveFilters!),
+    enabled: debouncedEffectiveFilters !== null,
   });
 
   const chartData = React.useMemo(
@@ -76,12 +84,14 @@ export function AverageTenureChart() {
       title={'Average Employee Tenure'}
       description={'In years'}
       action={
-        <EmployeeFilter
-          filters={localFilters}
-          updateFilter={updateLocalFilter}
-          clearFilters={clearLocalFilters}
-          shortButton={false}
-        />
+        localFilters && (
+          <EmployeeFilter
+            filters={localFilters}
+            updateFilter={updateLocalFilter}
+            clearFilters={clearLocalFilters}
+            shortButton={true}
+          />
+        )
       }
       chart={renderChart()}
     />

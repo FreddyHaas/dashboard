@@ -1,7 +1,8 @@
 import { ChartData } from 'chart.js';
 import React from 'react';
 
-import { useDebouncedQuery } from '../hooks/use-debounced-query';
+import { useQuery } from '@tanstack/react-query';
+import { useDebounce } from 'use-debounce';
 import {
   EMPLOYMENT_TYPE_LABELS,
   usePersistedFilterState,
@@ -11,7 +12,12 @@ import {
   EmployeeTypeEntry,
   fetchEmployeeEmploymentTypeData,
 } from '../mocks/mock-api-response';
-import { ChartCard, ChartErrorState, ChartLoadingSkeleton, PieChart } from './charts';
+import {
+  ChartCard,
+  ChartErrorState,
+  ChartLoadingSkeleton,
+  PieChart,
+} from './charts';
 import { EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
 
@@ -46,14 +52,16 @@ export function EmploymentTypeChart() {
     [globalFilters, localFilters],
   );
 
+  const [debouncedEffectiveFilters] = useDebounce(effectiveFilters, 500);
+
   const {
     data: apiData = [],
     isLoading,
     error,
-  } = useDebouncedQuery({
-    queryKey: [EMPLOYMENT_TYPE_FILTER_SCOPE, effectiveFilters],
-    queryFn: () => fetchEmployeeEmploymentTypeData(effectiveFilters),
-    debounceMs: 500,
+  } = useQuery({
+    queryKey: [EMPLOYMENT_TYPE_FILTER_SCOPE, debouncedEffectiveFilters],
+    queryFn: () => fetchEmployeeEmploymentTypeData(debouncedEffectiveFilters!),
+    enabled: debouncedEffectiveFilters !== null,
   });
 
   const chartData = React.useMemo(
@@ -82,12 +90,14 @@ export function EmploymentTypeChart() {
       title={'Employment Type Distribution'}
       description={'At last selected filter date'}
       action={
-        <EmployeeFilter
-          filters={localFilters}
-          updateFilter={updateLocalFilter}
-          clearFilters={clearLocalFilters}
-          shortButton={false}
-        />
+        localFilters && (
+          <EmployeeFilter
+            filters={localFilters}
+            updateFilter={updateLocalFilter}
+            clearFilters={clearLocalFilters}
+            shortButton={true}
+          />
+        )
       }
       chart={renderChart()}
     />

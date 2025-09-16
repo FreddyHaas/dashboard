@@ -28,8 +28,9 @@ export function EmployeeFilter({
 }: FilterProps) {
   const { tenure, location, employmentType, workArrangement } = filters;
   const activeFilterCount = useMemo(() => {
-    const { dateRange, ...otherFilters } = filters;
-    return Object.values(otherFilters).filter((value) => value !== undefined)
+    return (
+      Object.entries(filters) as [keyof Filters, Filters[keyof Filters]][]
+    ).filter(([key, value]) => key !== 'dateRange' && value !== undefined)
       .length;
   }, [filters]);
   const hasFilters = activeFilterCount > 0;

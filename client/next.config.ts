@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Limit output file tracing strictly to the client app directory
+  outputFileTracingRoot: __dirname,
 };
 
 export default nextConfig;

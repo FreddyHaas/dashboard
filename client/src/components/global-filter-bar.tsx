@@ -6,7 +6,6 @@ import { useGlobalFilter } from './global-filter-context';
 
 export function GlobalFilterBar() {
   const { filters, updateFilter, clearFilters } = useGlobalFilter();
-  const { dateRange } = filters;
 
   return (
     <div className="w-full border-b bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/30">
@@ -14,17 +13,21 @@ export function GlobalFilterBar() {
         <div className="flex flex-wrap items-center">
           <Separator orientation="vertical" className="h-6" />
           <div className="flex flex-wrap items-end gap-1 flex-1">
-            <DateRangeFilter
-              dateRange={dateRange}
-              onDateRangeChange={(range) => updateFilter('dateRange', range)}
-            />
+            {filters && (
+              <DateRangeFilter
+                dateRange={filters.dateRange}
+                onDateRangeChange={(range) => updateFilter('dateRange', range)}
+              />
+            )}
             <div className="flex-1" />
-            <EmployeeFilter
-              filters={filters}
-              updateFilter={updateFilter}
-              clearFilters={clearFilters}
-              shortButton={false}
-            />
+            {filters && (
+              <EmployeeFilter
+                filters={filters}
+                updateFilter={updateFilter}
+                clearFilters={clearFilters}
+                shortButton={false}
+              />
+            )}
           </div>
         </div>
       </div>

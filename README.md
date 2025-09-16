@@ -18,17 +18,7 @@ A modern analytics dashboard with global and local filter capabilities, built wi
 
 ## 🛠️ Getting Started
 
-### 1. Environment Setup
-
-Copy the environment example file and configure your environment variables:
-
-```bash
-cp server/.env-example server/.env
-```
-
-Edit `server/.env` with your database configuration if needed.
-
-### 2. Database Setup
+### 1. Database Setup
 
 Start the PostgreSQL database using Docker Compose:
 
@@ -41,7 +31,7 @@ This will start a PostgreSQL database on port `5432` with the following default 
 - **Username**: `myuser`
 - **Password**: `mypassword`
 
-### 3. Backend Setup
+### 2. Backend Setup
 
 Navigate to the server directory and install dependencies:
 
@@ -58,7 +48,7 @@ npm run dev
 
 The backend will be available at `http://localhost:8000` (or the port specified in your environment).
 
-### 4. Frontend Setup
+### 3. Frontend Setup
 
 In a new terminal, navigate to the client directory and install dependencies:
 
