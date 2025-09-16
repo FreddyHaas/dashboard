@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 
 interface ClearFiltersButtonProps {
   onClear: () => void;
@@ -9,18 +9,18 @@ interface ClearFiltersButtonProps {
   className?: string;
 }
 
-export function ClearFiltersButton({ 
-  onClear, 
-  hasFilters, 
-  className = "h-9 w-9 cursor-pointer" 
+export function ClearFiltersButton({
+  onClear,
+  hasFilters,
+  className = 'h-9 w-9 cursor-pointer',
 }: ClearFiltersButtonProps) {
   if (!hasFilters) {
     return null;
   }
 
   return (
-    <Button 
-      variant="ghost" 
+    <Button
+      variant="ghost"
       size="icon"
       className={className}
       onClick={onClear}

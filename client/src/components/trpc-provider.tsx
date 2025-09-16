@@ -11,7 +11,7 @@ import { useState } from 'react';
 export const trpc = createTRPCReact<AppRouter>();
 
 type RouterOutputs = inferRouterOutputs<AppRouter>;
-export type ServerFilter = RouterOutputs['getFilter'];
+export type ServerFilter = RouterOutputs['getFilterOrDefault'];
 
 export function TRPCProvider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -27,9 +27,7 @@ export function TRPCProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </trpc.Provider>
   );
 }

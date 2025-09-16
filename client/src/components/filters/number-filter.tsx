@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import { useCallback } from 'react';
 
 interface NumberFilterProps {
@@ -15,21 +15,24 @@ interface NumberFilterProps {
   defaultValue: number;
 }
 
-export function NumberFilter({ 
+export function NumberFilter({
   label,
   value,
-  onValueChange, 
-  className = "min-w-[200px]",
+  onValueChange,
+  className = 'min-w-[200px]',
   min = 0,
   max = 100,
   step = 1,
   defaultValue = 0,
 }: NumberFilterProps) {
-  const handleValueChange = useCallback((values: number[]) => {
-    if (values.length > 0) {
-      onValueChange(values[0]);
-    }
-  }, [onValueChange]);
+  const handleValueChange = useCallback(
+    (values: number[]) => {
+      if (values.length > 0) {
+        onValueChange(values[0]);
+      }
+    },
+    [onValueChange],
+  );
 
   return (
     <div className={`flex ${className} flex-col gap-2`}>

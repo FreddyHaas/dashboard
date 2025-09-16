@@ -4,7 +4,6 @@ import { EmploymentType, WorkArrangement } from '@prisma/client';
 import { z } from 'zod';
 
 export const appRouter = router({
-  
   getFilterOrDefault: publicProcedure
     .input(z.object({ scope: z.string() }))
     .query(async ({ input }) => {
@@ -21,7 +20,7 @@ export const appRouter = router({
         location: z.string().optional().nullable(),
         employmentType: z.enum(EmploymentType).optional().nullable(),
         workArrangement: z.enum(WorkArrangement).optional().nullable(),
-      })
+      }),
     )
     .mutation(async ({ input }) => {
       return await saveFilter(input);

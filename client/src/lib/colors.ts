@@ -10,11 +10,11 @@ export function getCSSVariable(variable: string): string {
     // Return fallback values for SSR
     return getFallbackColor(variable);
   }
-  
+
   const value = getComputedStyle(document.documentElement)
     .getPropertyValue(variable)
     .trim();
-  
+
   return value || getFallbackColor(variable);
 }
 
@@ -35,7 +35,7 @@ function getFallbackColor(variable: string): string {
     '--chart-4': '#10b981',
     '--chart-5': '#f97316',
   };
-  
+
   return fallbacks[variable] || '#000000';
 }
 

@@ -1,4 +1,9 @@
-import { EmploymentType, FilterState, PrismaClient, WorkArrangement } from '@prisma/client';
+import {
+  EmploymentType,
+  FilterState,
+  PrismaClient,
+  WorkArrangement,
+} from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -17,7 +22,9 @@ export interface SaveFilterInput {
  * @param scope - The scope/name of the filter to retrieve
  * @returns The filter state or a default filter if not found
  */
-export async function getFilterOrDefault(scope: string): Promise<FilterState | null> {
+export async function getFilterOrDefault(
+  scope: string,
+): Promise<FilterState | null> {
   try {
     const filter = await prisma.filterState.findUnique({
       where: {
@@ -36,7 +43,9 @@ export async function getFilterOrDefault(scope: string): Promise<FilterState | n
  * @param filterData - The filter data to save
  * @returns The saved filter state
  */
-export async function saveFilter(filterData: SaveFilterInput): Promise<FilterState> {
+export async function saveFilter(
+  filterData: SaveFilterInput,
+): Promise<FilterState> {
   try {
     const savedFilter = await prisma.filterState.upsert({
       where: {

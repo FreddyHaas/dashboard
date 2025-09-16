@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
 import type { AppRouter } from '@server/routes/router';
 import { type inferRouterOutputs } from '@trpc/server';
 import { useCallback, useEffect, useState } from 'react';
-import { type DateRange } from "react-day-picker";
+import { type DateRange } from 'react-day-picker';
 import { useDebounce } from 'use-debounce';
 import { trpc } from '../components/trpc-provider';
 
@@ -14,8 +14,8 @@ export interface Filters {
   dateRange: DateRange | undefined;
   tenure: number | undefined;
   location: string | undefined;
-  employmentType: "fulltime" | "parttime" | "contractor" | "intern" | undefined;
-  workArrangement: "hybrid" | "onsite" | "remote" | undefined;
+  employmentType: 'fulltime' | 'parttime' | 'contractor' | 'intern' | undefined;
+  workArrangement: 'hybrid' | 'onsite' | 'remote' | undefined;
 }
 
 const initialFilterState: Filters = {
@@ -30,37 +30,37 @@ type EmploymentType = NonNullable<Filters['employmentType']>;
 type WorkArrangement = NonNullable<Filters['workArrangement']>;
 
 export const EMPLOYMENT_TYPE_LABELS: Record<EmploymentType, string> = {
-  fulltime: "Full-time",
-  parttime: "Part-time", 
-  contractor: "Contractor",
-  intern: "Intern"
+  fulltime: 'Full-time',
+  parttime: 'Part-time',
+  contractor: 'Contractor',
+  intern: 'Intern',
 };
 
 export const EMPLOYMENT_TYPE_OPTIONS = [
   ...Object.entries(EMPLOYMENT_TYPE_LABELS).map(([key, value]) => ({
     value: key as EmploymentType,
-    label: value
-  }))
+    label: value,
+  })),
 ];
 
 export const WORK_ARRANGEMENT_LABELS: Record<WorkArrangement, string> = {
-  hybrid: "Hybrid",
-  onsite: "Onsite",
-  remote: "Remote"
+  hybrid: 'Hybrid',
+  onsite: 'Onsite',
+  remote: 'Remote',
 };
 
 export const WORK_ARRANGEMENT_OPTIONS = [
   ...Object.entries(WORK_ARRANGEMENT_LABELS).map(([key, value]) => ({
     value: key as WorkArrangement,
-    label: value
-  }))
+    label: value,
+  })),
 ];
 
 function mapDateRange(filterDto: filterDto): DateRange | undefined {
   if (!filterDto?.dateRangeFrom) {
     return undefined;
   }
-  
+
   return {
     from: new Date(filterDto.dateRangeFrom),
     to: filterDto.dateRangeTo ? new Date(filterDto.dateRangeTo) : undefined,
@@ -93,9 +93,11 @@ export function usePersistedFilterState(scope: string) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { data: filterDto, isLoading: isInitialLoading, error: queryError } = trpc.getFilterOrDefault.useQuery(
-    { scope }
-  );
+  const {
+    data: filterDto,
+    isLoading: isInitialLoading,
+    error: queryError,
+  } = trpc.getFilterOrDefault.useQuery({ scope });
 
   const [filters, setFilters] = useState<Filters>(() => {
     if (filterDto) {
@@ -115,7 +117,7 @@ export function usePersistedFilterState(scope: string) {
   // Handle query errors
   useEffect(() => {
     if (queryError) {
-      console.error("Failed to load filters:", queryError);
+      console.error('Failed to load filters:', queryError);
       setError(`Failed to load filters: ${queryError.message}`);
     }
   }, [queryError]);
@@ -123,7 +125,7 @@ export function usePersistedFilterState(scope: string) {
   // Save filter mutation
   const saveFilterMutation = trpc.saveFilter.useMutation({
     onError: (err) => {
-      console.error("Failed to save filters:", err);
+      console.error('Failed to save filters:', err);
       setError(`Failed to save filters: ${err.message}`);
     },
   });
@@ -150,7 +152,7 @@ export function usePersistedFilterState(scope: string) {
       const newFilters = { ...filters, [key]: value };
       setFilters(newFilters);
     },
-    [filters]
+    [filters],
   );
 
   const clearFilters = useCallback(() => {

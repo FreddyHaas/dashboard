@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Separator } from "@/components/ui/separator";
-import { DateRangeFilter, EmployeeFilter } from "./filters";
+import { Separator } from '@/components/ui/separator';
+import { DateRangeFilter, EmployeeFilter } from './filters';
 import { useGlobalFilter } from './global-filter-context';
 
 export function GlobalFilterBar() {
@@ -19,12 +19,15 @@ export function GlobalFilterBar() {
               onDateRangeChange={(range) => updateFilter('dateRange', range)}
             />
             <div className="flex-1" />
-            <EmployeeFilter filters={filters} updateFilter={updateFilter} clearFilters={clearFilters} shortButton={false} />
+            <EmployeeFilter
+              filters={filters}
+              updateFilter={updateFilter}
+              clearFilters={clearFilters}
+              shortButton={false}
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-

@@ -1,7 +1,13 @@
-"use client";
+'use client';
 
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export interface Option<T> {
   value: T;
@@ -17,21 +23,23 @@ interface OptionFilterProps<T> {
   className?: string;
 }
 
-export function OptionFilter<T>({ 
+export function OptionFilter<T>({
   label,
   value,
-  onValueChange, 
+  onValueChange,
   options,
-  placeholder = "Select option",
-  className = "min-w-[200px]" 
+  placeholder = 'Select option',
+  className = 'min-w-[200px]',
 }: OptionFilterProps<T>) {
   return (
     <div className={`flex ${className} flex-col gap-1`}>
       <Label className="text-xs text-muted-foreground">{label}</Label>
-      <Select 
-        value={value ? String(value) : undefined} 
+      <Select
+        value={value ? String(value) : undefined}
         onValueChange={(stringValue: string) => {
-          const option = options.find(opt => String(opt.value) === stringValue);
+          const option = options.find(
+            (opt) => String(opt.value) === stringValue,
+          );
           if (option) {
             onValueChange(option.value);
           }

@@ -11,9 +11,9 @@ export function Dashboard() {
       <div className="w-full space-y-4 max-w-screen-xl">
         <GlobalFilterBar />
         <DashboardGrid>
-          <NoOfEmployeesChart/>
-          <AverageTenureChart/>
-          <EmploymentTypeChart/>
+          <NoOfEmployeesChart />
+          <AverageTenureChart />
+          <EmploymentTypeChart />
         </DashboardGrid>
       </div>
     </GlobalFilterProvider>

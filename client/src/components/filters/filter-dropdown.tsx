@@ -1,34 +1,37 @@
-"use client";
+'use client';
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Filter } from "lucide-react";
-import * as React from "react";
+} from '@/components/ui/dropdown-menu';
+import { Filter } from 'lucide-react';
+import * as React from 'react';
 
 interface FilterDropdownProps {
   children: React.ReactNode;
   triggerText?: string;
-  align?: "start" | "center" | "end";
+  align?: 'start' | 'center' | 'end';
   className?: string;
   filterCount?: number;
 }
 
-export function FilterDropdown({ 
-  children, 
-  triggerText = undefined, 
-  align = "end",
-  className = "w-72 p-2",
-  filterCount = 0
+export function FilterDropdown({
+  children,
+  triggerText = undefined,
+  align = 'end',
+  className = 'w-72 p-2',
+  filterCount = 0,
 }: FilterDropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="h-9 cursor-pointer flex items-center gap-2">
+        <Button
+          variant="outline"
+          className="h-9 cursor-pointer flex items-center gap-2"
+        >
           <Filter className="h-4 w-4 text-gray-600" />
           {triggerText && <span className="text-gray-600">{triggerText}</span>}
           {filterCount > 0 && (

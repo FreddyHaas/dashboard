@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { getChartColors } from '@/lib/colors';
 import { ChartData, ChartOptions } from 'chart.js';
@@ -11,7 +11,7 @@ interface BarChartProps {
 
 export function BarChart({ data }: BarChartProps) {
   const colors = getChartColors();
-  
+
   const options: ChartOptions<'bar'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -42,7 +42,7 @@ export function BarChart({ data }: BarChartProps) {
 
   const styledData = {
     ...data,
-    datasets: data.datasets.map(dataset => ({
+    datasets: data.datasets.map((dataset) => ({
       ...dataset,
       backgroundColor: colors.secondary,
       borderColor: colors.secondary,

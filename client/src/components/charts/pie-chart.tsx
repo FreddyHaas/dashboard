@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { getChartColors } from '@/lib/colors';
 import { ChartData, ChartOptions } from 'chart.js';
@@ -11,7 +11,7 @@ interface PieChartProps {
 
 export function PieChart({ data }: PieChartProps) {
   const colors = getChartColors();
-  
+
   const options: ChartOptions<'pie'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -34,11 +34,17 @@ export function PieChart({ data }: PieChartProps) {
     },
   };
 
-  const chartColors = [colors.chart1, colors.chart2, colors.chart3, colors.chart4, colors.chart5];
-  
+  const chartColors = [
+    colors.chart1,
+    colors.chart2,
+    colors.chart3,
+    colors.chart4,
+    colors.chart5,
+  ];
+
   const styledData = {
     ...data,
-    datasets: data.datasets.map(dataset => ({
+    datasets: data.datasets.map((dataset) => ({
       ...dataset,
       backgroundColor: chartColors,
       borderColor: colors.card,

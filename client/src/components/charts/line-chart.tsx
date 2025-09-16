@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { getChartColors } from '@/lib/colors';
 import { ChartData, ChartOptions } from 'chart.js';
@@ -11,7 +11,7 @@ interface LineChartProps {
 
 export function LineChart({ data }: LineChartProps) {
   const colors = getChartColors();
-  
+
   const options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
@@ -49,7 +49,7 @@ export function LineChart({ data }: LineChartProps) {
 
   const styledData = {
     ...data,
-    datasets: data.datasets.map(dataset => ({
+    datasets: data.datasets.map((dataset) => ({
       ...dataset,
       borderColor: colors.primary,
       backgroundColor: `${colors.primary}1a`, // Add transparency for fill
