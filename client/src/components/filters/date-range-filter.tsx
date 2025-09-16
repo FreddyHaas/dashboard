@@ -33,7 +33,7 @@ export function DateRangeFilter({
     <div className={`flex ${className} flex-col gap-1`}>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="justify-start text-left font-normal h-9 w-[220px] cursor-pointer">
+          <Button variant="outline" className="justify-start text-left font-normal h-9 w-[220px] cursor-pointer text-gray-600 font-normal">
             <CalendarIcon className="mr-2 h-4 w-4" />
             {dateLabel}
           </Button>

@@ -8,9 +8,10 @@ interface FilterProps {
   filters: Filters;
   updateFilter: <K extends keyof Filters>(key: K, value: Filters[K]) => void;
   clearFilters: () => void;
+  shortButton: boolean;
 }
 
-export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterProps) {
+export function EmployeeFilter({ filters, updateFilter, clearFilters, shortButton = true}: FilterProps) {
   const { tenure, location, employmentType, workArrangement } = filters;
   const activeFilterCount = useMemo(() => {
     const { dateRange, ...otherFilters } = filters;
@@ -24,7 +25,7 @@ export function EmployeeFilter({ filters, updateFilter, clearFilters }: FilterPr
         onClear={clearFilters}
         hasFilters={hasFilters}
       />
-      <FilterDropdown filterCount={activeFilterCount}>
+      <FilterDropdown filterCount={activeFilterCount} triggerText={shortButton ? undefined  : 'Filters'}>
       <div className="flex flex-col gap-4">
       <OptionFilter<typeof filters.employmentType>
         label="Employment Type"

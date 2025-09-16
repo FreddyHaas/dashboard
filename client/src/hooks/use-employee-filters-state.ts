@@ -37,7 +37,6 @@ export const EMPLOYMENT_TYPE_LABELS: Record<EmploymentType, string> = {
 };
 
 export const EMPLOYMENT_TYPE_OPTIONS = [
-  { value: undefined, label: "All" },
   ...Object.entries(EMPLOYMENT_TYPE_LABELS).map(([key, value]) => ({
     value: key as EmploymentType,
     label: value
@@ -51,7 +50,6 @@ export const WORK_ARRANGEMENT_LABELS: Record<WorkArrangement, string> = {
 };
 
 export const WORK_ARRANGEMENT_OPTIONS = [
-  { value: undefined, label: "All" },
   ...Object.entries(WORK_ARRANGEMENT_LABELS).map(([key, value]) => ({
     value: key as WorkArrangement,
     label: value

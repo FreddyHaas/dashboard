@@ -19,7 +19,7 @@ export function GlobalFilterBar() {
               onDateRangeChange={(range) => updateFilter('dateRange', range)}
             />
             <div className="flex-1" />
-            <EmployeeFilter filters={filters} updateFilter={updateFilter} clearFilters={clearFilters} />
+            <EmployeeFilter filters={filters} updateFilter={updateFilter} clearFilters={clearFilters} shortButton={false} />
           </div>
         </div>
       </div>
